@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SEOCONAN - Cek Trustpositif Komdigi &amp; Status Blokir Domain</title>
+    <meta name="description" content="Cek status domain di database Trust Positif Komdigi secara instan dengan SEOCONAN. Solusi cepat cek internet positif dan domain blokir terbaru 2026." />
+    <meta name="keywords" content="trustpositif, cek ipos, trust positif, seoconan, inoutcoder, cek internet positif, trust positif komdigi, cek domain blokir" />
+    <link rel="canonical" href="https://trustpositif.ink" />
+    <link rel="icon" type="image/x-icon" href="https://postimg.cc/6ysvct4w/a71766eb" />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <style>
+        /* ── Google Fonts ── */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        /* ── reset & base ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 24px 16px;
+            margin: 0;
+            background: #f4f6f9;
+            /* soft cool gray */
+            background-image:
+                radial-gradient(at 0% 0%, rgba(0, 0, 0, .03) 0, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(0, 0, 0, .02) 0, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(0, 0, 0, .02) 0, transparent 50%);
+        }
+
+        /* subtle background pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── main card ── */
+        .main-card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 680px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .07), 0 4px 12px rgba(0, 0, 0, .03);
+            border: 1px solid rgba(0, 0, 0, .04);
+            margin-bottom: 24px;
+            flex-shrink: 0;
+            overflow: hidden;
+            transition: box-shadow .25s ease;
+        }
+
+        .main-card:hover {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .09);
+        }
+
+        /* ── modal header ── */
+        .modal-header {
+            background: #1e1e1e;
+            /* near-black */
+            color: #fafafa;
+            padding: 18px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+        }
+
+        .modal-header .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-header .brand-dot {
+            width: 8px;
+            height: 8px;
+            background: #a0a0a0;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: .4;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .modal-header .brand-name {
+            font-weight: 700;
+            font-size: .9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #f0f0f0;
+        }
+
+        .modal-header .close-btn {
+            font-size: 1.6rem;
+            line-height: 1;
+            color: rgba(255, 255, 255, .4);
+            background: none;
+            border: 0;
+            cursor: pointer;
+            transition: color .2s;
+            padding: 0 4px;
+        }
+
+        .modal-header .close-btn:hover {
+            color: #e0e0e0;
+        }
+
+        /* ── modal body ── */
+        .modal-body {
+            padding: 32px 28px 28px;
+        }
+
+        .modal-body h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            letter-spacing: -.02em;
+        }
+
+        .modal-body .desc {
+            font-size: .95rem;
+            line-height: 1.6;
+            color: #3d3d3d;
+            margin-bottom: 18px;
+        }
+
+        .modal-body .desc strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .modal-body .subhead {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .modal-body .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 18px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+        }
+
+        .modal-body .feature-list li {
+            font-size: .9rem;
+            color: #3d3d3d;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .modal-body .feature-list li::before {
+            content: "▸";
+            color: #888;
+            font-weight: 400;
+        }
+
+        /* ── textarea ── */
+        .textarea-official {
+            width: 100%;
+            height: 200px;
+            border: 1.5px solid #e2e6ec;
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: .9rem;
+            line-height: 1.6;
+            color: #1e1e1e;
+            background: #f9fafc;
+            resize: vertical;
+            outline: none;
+            transition: border-color .25s, box-shadow .25s, background .25s;
+            font-family: 'Inter', monospace;
+        }
+
+        .textarea-official:focus {
+            border-color: #888;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, .04);
+        }
+
+        .textarea-official::placeholder {
+            color: #9aa0a8;
+            font-size: .85rem;
+        }
+
+        /* ── button ── */
+        .btn-scan {
+            background: #1e1e1e;
+            color: #fafafa;
+            padding: 12px 30px;
+            border: 0;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: .95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background .25s, transform .15s, box-shadow .25s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+            letter-spacing: .3px;
+        }
+
+        .btn-scan:hover {
+            background: #2d2d2d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+        }
+
+        .btn-scan:active {
+            transform: translateY(0);
+        }
+
+        .btn-scan svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ── footer note ── */
+        .form-footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .form-footer .hint {
+            font-size: .75rem;
+            color: #7a7f87;
+            line-height: 1.5;
+            max-width: 260px;
+        }
+
+        /* ── official footer ── */
+        .official-footer {
+            position: relative;
+            z-index: 5;
+            margin-top: auto;
+            padding: 16px 0 8px;
+            color: rgba(0, 0, 0, .25);
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .official-footer a {
+            color: rgba(0, 0, 0, .5);
+            text-decoration: none;
+            transition: color .25s;
+            font-weight: 600;
+        }
+
+        .official-footer a:hover {
+            color: #1a1a1a;
+        }
+
+        /* ── popup overlay ── */
+        #popupOverlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, .6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .popup-content {
+            width: 100%;
+            max-width: 1050px;
+            height: 88vh;
+            max-height: 800px;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, .3);
+            animation: popup-in .28s ease-out;
+        }
+
+        @keyframes popup-in {
+            0% {
+                opacity: 0;
+                transform: scale(.96) translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .popup-nav {
+            background: #1e1e1e;
+            color: #f0f0f0;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+        }
+
+        .popup-nav .badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .popup-nav .badge-label {
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #b0b0b0;
+        }
+
+        .popup-nav .badge-tag {
+            font-size: .6rem;
+            background: #333;
+            padding: 2px 12px;
+            border-radius: 20px;
+            color: #999;
+            letter-spacing: .5px;
+        }
+
+        .popup-nav .close-popup-btn {
+            background: #3a3a3a;
+            border: 0;
+            color: #e0e0e0;
+            padding: 6px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+
+        .popup-nav .close-popup-btn:hover {
+            background: #555;
+            color: #fff;
+        }
+
+        .popup-content iframe {
+            width: 100%;
+            flex: 1;
+            border: 0;
+            background: #fafafa;
+        }
+
+        /* ── responsive ── */
+        @media (max-width: 500px) {
+            .modal-header {
+                padding: 14px 18px;
+            }
+            .modal-body {
+                padding: 20px 16px 18px;
+            }
+            .modal-body h1 {
+                font-size: 1.2rem;
+            }
+            .form-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .form-footer .hint {
+                max-width: 100%;
+            }
+            .btn-scan {
+                justify-content: center;
+            }
+            .popup-content {
+                height: 92vh;
+                max-height: 600px;
+                border-radius: 12px;
+            }
+            .popup-nav {
+                padding: 10px 16px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .popup-nav .badge-label {
+                font-size: .6rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .modal-header .brand-name {
+                font-size: .75rem;
+                letter-spacing: 1px;
+            }
+            .modal-body h1 {
+                font-size: 1rem;
+            }
+            .textarea-official {
+                height: 150px;
+                font-size: .8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- background pattern -->
+    <div class="bg-pattern" aria-hidden="true"></div>
+
+    <!-- ─── MAIN CARD ─── -->
+    <div class="main-card">
+
+        <!-- header -->
+        <div class="modal-header">
+            <div class="brand">
+                <span class="brand-dot"></span>
+                <span class="brand-name">SEOCONAN</span>
+            </div>
+            <button class="close-btn" onclick="document.getElementById('domainInput').value=''" aria-label="Kosongkan input">&times;</button>
+        </div>
+
+        <!-- body -->
+        <div class="modal-body">
+
+            <h1>Layanan Cek Trust Positif Komdigi Tercepat</h1>
+
+            <p class="desc">
+                Apakah domain Anda terkena blokir? <strong>SEOCONAN</strong> menyediakan alat otomatis untuk melakukan <strong>cek internet positif</strong> langsung ke database resmi <strong>Trust Positif Komdigi</strong>. Cukup masukkan list domain dan dapatkan hasilnya secara <strong>real-time</strong>.
+            </p>
+
+            <p class="subhead">Kenapa Cek Domain di SEOCONAN?</p>
+
+            <ul class="feature-list">
+                <li>Cek status blokir domain secara massal (hingga 1000 link)</li>
+                <li>Update database mengikuti Trust Positif terbaru 2026</li>
+            </ul>
+
+            <!-- textarea -->
+            <div style="margin-bottom: 16px;">
+                <textarea id="domainInput" class="textarea-official" placeholder="Masukkan list domain di sini…&#10;Satu link per baris (maksimal 1000 link)."></textarea>
+            </div>
+
+            <!-- footer row -->
+            <div class="form-footer">
+                <div class="hint">
+                    * Sistem otomasi pengecekan database Trust Positif.<br />
+                    * Hasil pemindaian akan ditampilkan secara instan oleh SEOCONAN.
+                </div>
+                <button onclick="scanSekarang()" class="btn-scan">
+                    <svg viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    Scan Sekarang
+                </button>
+            </div>
+
+        </div><!-- /modal-body -->
+    </div><!-- /main-card -->
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="official-footer">
+        &copy; 2026 <a href="https://shortq.link/menyalasastra" target="_blank"><b>sastra4d</b></a> &bull; SEOCONAN
+    </footer>
+
+    <!-- ─── POPUP ─── -->
+    <div id="popupOverlay">
+        <div class="popup-content">
+            <div class="popup-nav">
+                <div class="badge">
+                    <span class="badge-label">SCAN RESULT</span>
+                    <span class="badge-tag">SECURE_MODE</span>
+                </div>
+                <button class="close-popup-btn" onclick="closePopup()">Tutup</button>
+            </div>
+            <iframe id="resultFrame" name="resultFrame"></iframe>
+        </div>
+    </div>
+
+    <!-- ─── MAIN SCRIPT ─── -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ── config ──
+            const C = {
+                baseUrl: 'https://trustpositif.komdigi.go.id/welcome',
+                csrfToken: '6aece8f48ccb960c5a29b6030be20979'
+            };
+
+            // ── anti‑theft / dev‑tools guard ──
+            const guard = function() {
+                const el = document.createElement('div');
+                el.style.cssText =
+                    'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#1a1a1a;color:#fff;padding:32px 40px;z-index:10000;border-radius:16px;font-weight:700;text-align:center;box-shadow:0 0 80px rgba(0,0,0,.6);border:1px solid #444;font-size:1.1rem;line-height:1.6;';
+                el.innerHTML =
+                    '⚠️ <span style="opacity:.7;font-weight:400;">Langsung <kbd>Ctrl+V</kbd> aja, jangan coba‑coba maling script ya!</span><br><span style="font-size:.75rem;opacity:.5;display:block;margin-top:6px;">Mengalihkan sistem…</span>';
+                document.body.appendChild(el);
+                setTimeout(() => {
+                    location.href = 'https://seotatto.pages.dev/';
+                }, 2000);
+            };
+
+            // ── scan function ──
+            window.scanSekarang = function() {
+                const input = document.getElementById('domainInput').value.trim();
+                if (!input) return;
+
+                const url = C.baseUrl +
+                    '?csrf_token=' + C.csrfToken +
+                    '&recaptcha_token=&domains=' + encodeURIComponent(input);
+
+                document.getElementById('popupOverlay').style.display = 'flex';
+                document.getElementById('resultFrame').src = url;
+            };
+
+            // ── close popup ──
+            window.closePopup = function() {
+                document.getElementById('popupOverlay').style.display = 'none';
+                document.getElementById('resultFrame').src = '';
+            };
+
+            // ── guard: context menu ──
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                guard();
+            });
+
+            // ── guard: devtools shortcuts ──
+            document.addEventListener('keydown', function(e) {
+                const key = e.keyCode || e.which;
+                const ctrl = e.ctrlKey || e.metaKey;
+                if (
+                    key === 123 || // F12
+                    (ctrl && key === 73) || // Ctrl+Shift+I (inspect)
+                    (ctrl && key === 85) // Ctrl+U (view source)
+                ) {
+                    e.preventDefault();
+                    guard();
+                }
+            });
+
+            // ── close popup on Escape ──
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') window.closePopup();
+            });
+
+            // ── close popup on overlay click ──
+            window.onclick = function(e) {
+                const overlay = document.getElementById('popupOverlay');
+                if (e.target === overlay) window.closePopup();
+            };
+
+        })();
+    </script>
+
+    <!-- ─── THIRD‑PARTY BEACONS (kept as-is) ─── -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
+    integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
+    data-cf-beacon='{"version":"2024.11.0","token":"a9dc7a8db5e54b98a584dd5cb48e4e10","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+crossorigin="anonymous">
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496"
+integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ=="
+data-cf-beacon='{"version":"2024.11.0","token":"914889e487bc442db1fca74d5f5a51cc","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+crossorigin="anonymous">
+</script>
+
+</body>
+</html>
