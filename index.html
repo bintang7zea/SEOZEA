@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SEOCONAN - Cek Trustpositif Komdigi &amp; Status Blokir Domain</title>
-    <meta name="description" content="Cek status domain di database Trust Positif Komdigi secara instan dengan SEOCONAN. Solusi cepat cek internet positif dan domain blokir terbaru 2026." />
-    <meta name="keywords" content="trustpositif, cek ipos, trust positif, seoconan, inoutcoder, cek internet positif, trust positif komdigi, cek domain blokir" />
-    <link rel="canonical" href="https://sastra4d.com" />
+    <title>SEOZEA - Cek Trustpositif Komdigi &amp; Status Blokir Domain</title>
+    <meta name="description" content="Cek status domain di database Trust Positif Komdigi secara instan dengan SEOZEA. Solusi cepat cek internet positif dan domain blokir terbaru 2026." />
+    <meta name="keywords" content="trustpositif, cek ipos, trust positif, seozea, inoutcoder, cek internet positif, trust positif komdigi, cek domain blokir" />
+    <!-- Canonical updated to narasigaming.com -->
+    <link rel="canonical" href="https://NARASIGAMING.COM" />
     
     <!-- Updated Favicon / Thumbnail -->
     <link rel="icon" type="image/png" href="https://i.postimg.cc/6ysvct4w/13bc63c6-3c91-4827-814b-3f88d9a5fa00.png" />
@@ -38,14 +39,12 @@
             padding: 24px 16px;
             margin: 0;
             background: #f4f6f9;
-            /* soft cool gray */
             background-image:
                 radial-gradient(at 0% 0%, rgba(0, 0, 0, .03) 0, transparent 50%),
                 radial-gradient(at 100% 0%, rgba(0, 0, 0, .02) 0, transparent 50%),
                 radial-gradient(at 50% 100%, rgba(0, 0, 0, .02) 0, transparent 50%);
         }
 
-        /* subtle background pattern */
         .bg-pattern {
             position: fixed;
             top: 0;
@@ -57,7 +56,6 @@
             pointer-events: none;
         }
 
-        /* ── main card ── */
         .main-card {
             position: relative;
             z-index: 10;
@@ -77,10 +75,8 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, .09);
         }
 
-        /* ── modal header ── */
         .modal-header {
             background: #1e1e1e;
-            /* near-black */
             color: #fafafa;
             padding: 18px 28px;
             display: flex;
@@ -140,7 +136,6 @@
             color: #e0e0e0;
         }
 
-        /* ── modal body ── */
         .modal-body {
             padding: 32px 28px 28px;
         }
@@ -195,7 +190,6 @@
             font-weight: 400;
         }
 
-        /* ── textarea ── */
         .textarea-official {
             width: 100%;
             height: 200px;
@@ -223,7 +217,6 @@
             font-size: .85rem;
         }
 
-        /* ── button ── */
         .btn-scan {
             background: #1e1e1e;
             color: #fafafa;
@@ -261,7 +254,73 @@
             stroke-linejoin: round;
         }
 
-        /* ── footer note ── */
+        .telegram-settings {
+            background: #f8f9fb;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-bottom: 16px;
+            border: 1px solid #eceef2;
+        }
+
+        .telegram-settings .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .85rem;
+            font-weight: 500;
+            color: #1e1e1e;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+
+        .telegram-settings .toggle-label input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #1e1e1e;
+        }
+
+        .telegram-settings .fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .telegram-settings .fields .field-group {
+            flex: 1 1 180px;
+        }
+
+        .telegram-settings .fields label {
+            display: block;
+            font-size: .7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: #6b7280;
+            margin-bottom: 2px;
+        }
+
+        .telegram-settings .fields input {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: .85rem;
+            background: #fff;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .telegram-settings .fields input:focus {
+            border-color: #888;
+        }
+
+        .telegram-settings .status {
+            font-size: .75rem;
+            color: #6b7280;
+            margin-top: 6px;
+        }
+
         .form-footer {
             display: flex;
             flex-wrap: wrap;
@@ -278,7 +337,6 @@
             max-width: 260px;
         }
 
-        /* ── official footer ── */
         .official-footer {
             position: relative;
             z-index: 5;
@@ -303,7 +361,6 @@
             color: #1a1a1a;
         }
 
-        /* ── popup overlay ── */
         #popupOverlay {
             display: none;
             position: fixed;
@@ -403,7 +460,29 @@
             background: #fafafa;
         }
 
-        /* ── responsive ── */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e1e1e;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: .9rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,.2);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity .3s ease;
+            pointer-events: none;
+            max-width: 90%;
+            text-align: center;
+        }
+        .toast.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         @media (max-width: 500px) {
             .modal-header {
                 padding: 14px 18px;
@@ -437,6 +516,9 @@
             .popup-nav .badge-label {
                 font-size: .6rem;
             }
+            .telegram-settings .fields .field-group {
+                flex: 1 1 100%;
+            }
         }
 
         @media (max-width: 380px) {
@@ -457,7 +539,6 @@
 
 <body>
 
-    <!-- background pattern -->
     <div class="bg-pattern" aria-hidden="true"></div>
 
     <!-- ─── MAIN CARD ─── -->
@@ -467,7 +548,7 @@
         <div class="modal-header">
             <div class="brand">
                 <span class="brand-dot"></span>
-                <span class="brand-name">SEOCONAN</span>
+                <span class="brand-name">SEOZEA</span>
             </div>
             <button class="close-btn" onclick="document.getElementById('domainInput').value=''" aria-label="Kosongkan input">&times;</button>
         </div>
@@ -478,10 +559,10 @@
             <h1>Layanan Cek Trust Positif Komdigi Tercepat</h1>
 
             <p class="desc">
-                Apakah domain Anda terkena blokir? <strong>SEOCONAN</strong> menyediakan alat otomatis untuk melakukan <strong>cek internet positif</strong> langsung ke database resmi <strong>Trust Positif Komdigi</strong>. Cukup masukkan list domain dan dapatkan hasilnya secara <strong>real-time</strong>.
+                Apakah domain Anda terkena blokir? <strong>SEOZEA</strong> menyediakan alat otomatis untuk melakukan <strong>cek internet positif</strong> langsung ke database resmi <strong>Trust Positif Komdigi</strong>. Cukup masukkan list domain dan dapatkan hasilnya secara <strong>real-time</strong>.
             </p>
 
-            <p class="subhead">Kenapa Cek Domain di SEOCONAN?</p>
+            <p class="subhead">Kenapa Cek Domain di SEOZEA?</p>
 
             <ul class="feature-list">
                 <li>Cek status blokir domain secara massal (hingga 1000 link)</li>
@@ -493,11 +574,30 @@
                 <textarea id="domainInput" class="textarea-official" placeholder="Masukkan list domain di sini…&#10;Satu link per baris (maksimal 1000 link)."></textarea>
             </div>
 
+            <!-- ─── Telegram Settings ─── -->
+            <div class="telegram-settings" id="telegramSettings">
+                <div class="toggle-label">
+                    <input type="checkbox" id="telegramToggle" />
+                    <span>Kirim hasil scan ke Telegram secara otomatis</span>
+                </div>
+                <div class="fields" id="telegramFields" style="display: none;">
+                    <div class="field-group">
+                        <label for="botToken">Bot Token</label>
+                        <input type="text" id="botToken" placeholder="123456:ABC-DEF..." value="8758504520:AAGMmey5nvWBKimccuQti7Vitq3kqoCboJE" />
+                    </div>
+                    <div class="field-group">
+                        <label for="chatId">Chat ID</label>
+                        <input type="text" id="chatId" placeholder="123456789" value="8758504520" />
+                    </div>
+                </div>
+                <div class="status" id="telegramStatus"></div>
+            </div>
+
             <!-- footer row -->
             <div class="form-footer">
                 <div class="hint">
                     * Sistem otomasi pengecekan database Trust Positif.<br />
-                    * Hasil pemindaian akan ditampilkan secara instan oleh SEOCONAN.
+                    * Hasil pemindaian akan ditampilkan secara instan oleh SEOZEA.
                 </div>
                 <button onclick="scanSekarang()" class="btn-scan">
                     <svg viewBox="0 0 24 24">
@@ -512,7 +612,7 @@
 
     <!-- ─── FOOTER ─── -->
     <footer class="official-footer">
-        &copy; 2026 <a href="https://shortq.link/menyalasastra" target="_blank"><b>sastra4d</b></a> &bull; SEOCONAN
+        &copy; 2026 <a href="https://shortq.link/menyalasastra" target="_blank"><b>NARASIGAMING</b></a> &bull; SEOZEA
     </footer>
 
     <!-- ─── POPUP ─── -->
@@ -529,6 +629,9 @@
         </div>
     </div>
 
+    <!-- ─── TOAST ─── -->
+    <div id="toast" class="toast"></div>
+
     <!-- ─── MAIN SCRIPT ─── -->
     <script>
         (function() {
@@ -540,7 +643,96 @@
                 csrfToken: '6aece8f48ccb960c5a29b6030be20979'
             };
 
-            // ── anti‑theft / dev‑tools guard ──
+            // ── Telegram DOM elements ──
+            const telegramToggle = document.getElementById('telegramToggle');
+            const telegramFields = document.getElementById('telegramFields');
+            const botTokenInput = document.getElementById('botToken');
+            const chatIdInput = document.getElementById('chatId');
+            const telegramStatus = document.getElementById('telegramStatus');
+
+            // ── Default token & chat id (already set in input value) ──
+            // Load saved settings, but keep default if empty
+            function loadTelegramSettings() {
+                try {
+                    const saved = JSON.parse(localStorage.getItem('SEOZEA_telegram') || '{}');
+                    // If saved data exists, use it; otherwise keep default values from input
+                    if (saved.botToken !== undefined) botTokenInput.value = saved.botToken;
+                    if (saved.chatId !== undefined) chatIdInput.value = saved.chatId;
+                    if (saved.enabled !== undefined) telegramToggle.checked = saved.enabled;
+                } catch (e) {}
+                // Always ensure fields visibility matches toggle
+                telegramFields.style.display = telegramToggle.checked ? 'flex' : 'none';
+                saveTelegramSettings(); // update status
+            }
+            loadTelegramSettings();
+
+            // Save settings to localStorage
+            function saveTelegramSettings() {
+                const data = {
+                    enabled: telegramToggle.checked,
+                    botToken: botTokenInput.value.trim(),
+                    chatId: chatIdInput.value.trim()
+                };
+                localStorage.setItem('SEOZEA_telegram', JSON.stringify(data));
+                telegramStatus.textContent = data.enabled && data.botToken && data.chatId ? '✅ Notifikasi aktif' :
+                    data.enabled ? '⚠️ Lengkapi Token dan Chat ID' : '⏸️ Notifikasi dimatikan';
+            }
+
+            telegramToggle.addEventListener('change', function() {
+                telegramFields.style.display = this.checked ? 'flex' : 'none';
+                saveTelegramSettings();
+            });
+
+            botTokenInput.addEventListener('input', saveTelegramSettings);
+            chatIdInput.addEventListener('input', saveTelegramSettings);
+
+            // ── Toast notification ──
+            function showToast(message, isError = false) {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.style.background = isError ? '#b91c1c' : '#1e1e1e';
+                toast.classList.add('show');
+                clearTimeout(toast._timer);
+                toast._timer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 5000);
+            }
+
+            // ── Send to Telegram ──
+            async function sendToTelegram(text) {
+                const token = botTokenInput.value.trim();
+                const chatId = chatIdInput.value.trim();
+                if (!token || !chatId) {
+                    showToast('Token atau Chat ID Telegram belum diisi', true);
+                    return false;
+                }
+                try {
+                    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+                    const resp = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: text,
+                            parse_mode: 'HTML',
+                            disable_web_page_preview: false
+                        })
+                    });
+                    const result = await resp.json();
+                    if (result.ok) {
+                        showToast('✅ Hasil scan berhasil dikirim ke Telegram');
+                        return true;
+                    } else {
+                        showToast('❌ Gagal kirim ke Telegram: ' + (result.description || 'Unknown error'), true);
+                        return false;
+                    }
+                } catch (err) {
+                    showToast('❌ Error: ' + err.message, true);
+                    return false;
+                }
+            }
+
+            // ── anti‑theft guard ──
             const guard = function() {
                 const el = document.createElement('div');
                 el.style.cssText =
@@ -556,14 +748,36 @@
             // ── scan function ──
             window.scanSekarang = function() {
                 const input = document.getElementById('domainInput').value.trim();
-                if (!input) return;
+                if (!input) {
+                    showToast('Masukkan daftar domain terlebih dahulu', true);
+                    return;
+                }
 
+                // Build result URL
                 const url = C.baseUrl +
                     '?csrf_token=' + C.csrfToken +
                     '&recaptcha_token=&domains=' + encodeURIComponent(input);
 
+                // Show popup with iframe
                 document.getElementById('popupOverlay').style.display = 'flex';
                 document.getElementById('resultFrame').src = url;
+
+                // ── Telegram notification ──
+                if (telegramToggle.checked) {
+                    const token = botTokenInput.value.trim();
+                    const chatId = chatIdInput.value.trim();
+                    if (token && chatId) {
+                        const domainList = input.split(/\n/).filter(d => d.trim() !== '').map(d => `• ${d.trim()}`).join('\n');
+                        const message =
+                            `🔍 <b>Hasil Scan Trust Positif</b>\n\n` +
+                            `📋 <b>Domain yang dicek:</b>\n${domainList}\n\n` +
+                            `🔗 <b>Link hasil:</b>\n${url}\n\n` +
+                            `🕒 ${new Date().toLocaleString('id-ID')}`;
+                        sendToTelegram(message);
+                    } else {
+                        showToast('⚠️ Telegram aktif tapi Token / Chat ID kosong', true);
+                    }
+                }
             };
 
             // ── close popup ──
@@ -603,10 +817,13 @@
                 if (e.target === overlay) window.closePopup();
             };
 
+            // initial status
+            saveTelegramSettings();
+
         })();
     </script>
 
-    <!-- ─── THIRD‑PARTY BEACONS (kept as-is) ─── -->
+    <!-- ─── THIRD‑PARTY BEACONS ─── -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
     integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
     data-cf-beacon='{"version":"2024.11.0","token":"a9dc7a8db5e54b98a584dd5cb48e4e10","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
