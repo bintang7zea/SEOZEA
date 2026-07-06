@@ -1,622 +1,2018 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SEOZEA - Cek Trustpositif Komdigi &amp; Status Blokir Domain</title>
-    <meta name="description" content="Cek status domain di database Trust Positif Komdigi secara instan dengan SEOZEA. Solusi cepat cek internet positif dan domain blokir terbaru 2026." />
-    <meta name="keywords" content="trustpositif, cek ipos, trust positif, SEOZEA, inoutcoder, cek internet positif, trust positif komdigi, cek domain blokir" />
-    <link rel="canonical" href="https://NARASIGAMING.com" />
-    
-    <!-- Updated Favicon / Thumbnail -->
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/6ysvct4w/13bc63c6-3c91-4827-814b-3f88d9a5fa00.png" />
-
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GELORAGAMING - Lucky Wheel Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        /* ── Google Fonts ── */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        /* ============================================================
+           GELORAGAMING ADMIN THEME - Green, Black, White
+           ============================================================ */
+        
+        :root {
+            --gelora-green: #00992f;
+            --gelora-green-dark: #005f1d;
+            --gelora-green-light: #41d16d;
+            --gelora-green-bg: #0a1a0f;
+            --gelora-green-gradient: linear-gradient(135deg, #00992f, #005f1d);
+            --gelora-gold: #ffd700;
+            --gelora-gold-dark: #b8860b;
+            --gelora-black: #0a0a0a;
+            --gelora-black-card: #111111;
+            --gelora-dark-card: #1a1a1a;
+            --gelora-white: #f0f0f0;
+            --gelora-white-dim: #d4d4d4;
+            --gelora-gray: #6b7280;
+            --gelora-shadow: 0 8px 32px rgba(0,0,0,0.6);
+            --gelora-border: rgba(0, 153, 47, 0.3);
+            --gelora-border-gold: rgba(255, 215, 0, 0.3);
+        }
 
-        /* ── reset & base ── */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 24px 16px;
-            margin: 0;
-            background: #f4f6f9;
-            /* soft cool gray */
-            background-image:
-                radial-gradient(at 0% 0%, rgba(0, 0, 0, .03) 0, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(0, 0, 0, .02) 0, transparent 50%),
-                radial-gradient(at 50% 100%, rgba(0, 0, 0, .02) 0, transparent 50%);
+            background: var(--gelora-black);
+            color: var(--gelora-white);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
         }
 
-        /* subtle background pattern */
-        .bg-pattern {
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--gelora-black); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, var(--gelora-green), var(--gelora-green-dark));
+            border-radius: 10px;
+        }
+
+        /* ===== LAYOUT FLEX ===== */
+        .app-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 220px;
+            min-width: 220px;
+            background: linear-gradient(180deg, #0a1a0f 0%, #020617 100%);
+            border-right: 2px solid var(--gelora-border);
+            padding: 14px 12px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+            flex-shrink: 0;
+            box-shadow: 4px 0 40px rgba(0, 153, 47, 0.15);
+            z-index: 100;
+        }
+
+        .sidebar .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: var(--gelora-white);
+            text-decoration: none;
+            padding: 8px 10px;
+            border-bottom: 2px solid var(--gelora-border);
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+        .brand:hover { color: var(--gelora-green-light); text-decoration: none; }
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gelora-green-gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(0, 153, 47, 0.3);
+        }
+        .brand-text { font-size: 0.95rem; }
+        .brand-text span { color: var(--gelora-green-light); }
+
+        /* User info di sidebar */
+        .sidebar-user {
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            background: rgba(0, 153, 47, 0.08);
+            border-radius: 8px;
+            border: 1px solid var(--gelora-border);
+            flex-shrink: 0;
+        }
+        .sidebar-user .user-name {
+            color: var(--gelora-white);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .sidebar-user .user-role {
+            color: var(--gelora-gray);
+            font-size: 0.7rem;
+        }
+        .sidebar-user .user-role i {
+            color: var(--gelora-green-light);
+        }
+
+        .sidebar .nav {
+            flex: 1;
+            overflow-y: auto;
+        }
+        .sidebar .nav-link {
+            color: var(--gelora-white-dim);
+            border-radius: 8px;
+            padding: 7px 10px;
+            margin: 2px 0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.82rem;
+            border-left: 3px solid transparent;
+        }
+        .sidebar .nav-link i {
+            width: 18px;
+            text-align: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .sidebar .nav-link:hover {
+            background: rgba(0, 153, 47, 0.15);
+            color: var(--gelora-white);
+            border-left-color: var(--gelora-green);
+        }
+        .sidebar .nav-link.active {
+            background: rgba(0, 153, 47, 0.2);
+            color: var(--gelora-green-light);
+            border-left-color: var(--gelora-green);
+        }
+
+        .sidebar-divider {
+            border: none;
+            border-top: 1px solid var(--gelora-border);
+            margin: 8px 0;
+            flex-shrink: 0;
+        }
+
+        .sidebar .btn-outline-green {
+            background: transparent;
+            color: var(--gelora-green-light);
+            border: 2px solid var(--gelora-green);
+            border-radius: 8px;
+            padding: 6px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 4px;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .sidebar .btn-outline-green:hover {
+            background: var(--gelora-green);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(0, 153, 47, 0.3);
+        }
+
+        .sidebar .btn-danger-outline {
+            background: transparent;
+            color: #ef4444;
+            border: 2px solid #ef4444;
+            border-radius: 8px;
+            padding: 6px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .sidebar .btn-danger-outline:hover {
+            background: #ef4444;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            flex: 1;
+            padding: 16px 20px;
+            background: radial-gradient(ellipse at top left, #0a1a0f, #050505);
+            overflow-y: auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== TOPBAR ===== */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+        .topbar-title h1 {
+            font-weight: 800;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, var(--gelora-white), var(--gelora-green-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0;
+        }
+        .topbar-title p {
+            color: var(--gelora-gray);
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-green {
+            background: var(--gelora-green-gradient);
+            color: #fff;
+            font-weight: 700;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 153, 47, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            height: 34px;
+        }
+        .btn-green:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px rgba(0, 153, 47, 0.5);
+            color: #fff;
+            background: linear-gradient(135deg, #00b33a, #006b22);
+        }
+
+        .btn-green-outline {
+            background: transparent;
+            color: var(--gelora-green-light);
+            border: 2px solid var(--gelora-green);
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 4px 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            height: 30px;
+        }
+        .btn-green-outline:hover {
+            background: var(--gelora-green);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(0, 153, 47, 0.2);
+        }
+
+        .btn-danger-outline-sm {
+            background: transparent;
+            color: #ef4444;
+            border: 2px solid #ef4444;
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 2px 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            height: 26px;
+        }
+        .btn-danger-outline-sm:hover {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        .btn-gold-outline {
+            background: transparent;
+            color: var(--gelora-gold);
+            border: 2px solid var(--gelora-gold);
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 4px 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            height: 30px;
+        }
+        .btn-gold-outline:hover {
+            background: var(--gelora-gold);
+            color: #000;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--gelora-black-card);
+            border: 1px solid var(--gelora-border);
+            border-radius: 12px;
+            box-shadow: var(--gelora-shadow);
+            transition: all 0.3s ease;
+            color: var(--gelora-white);
+        }
+        .card:hover {
+            border-color: rgba(0, 153, 47, 0.5);
+            box-shadow: 0 8px 40px rgba(0, 153, 47, 0.08);
+        }
+        .card .card-body {
+            padding: 14px 18px;
+        }
+
+        /* ===== STAT CARDS ===== */
+        .stat-card {
+            background: linear-gradient(145deg, #0d1f12, #080f0a);
+            border: 1px solid var(--gelora-border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gelora-green-gradient);
+            opacity: 0.6;
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 153, 47, 0.5);
+            box-shadow: 0 8px 40px rgba(0, 153, 47, 0.1);
+        }
+        .stat-card .stat-icon { font-size: 1.2rem; color: var(--gelora-green-light); margin-bottom: 2px; opacity: 0.8; }
+        .stat-card .stat-label { color: var(--gelora-gray); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .stat-card .stat-number { font-size: 1.6rem; font-weight: 900; color: var(--gelora-white); line-height: 1.2; }
+        .stat-card .stat-number.green { color: var(--gelora-green-light); }
+        .stat-card .stat-number.gold { color: var(--gelora-gold); }
+
+        /* ===== TABLES ===== */
+        .table {
+            --bs-table-bg: transparent;
+            --bs-table-color: var(--gelora-white-dim);
+            --bs-table-border-color: rgba(0, 153, 47, 0.12);
+            margin-bottom: 0;
+        }
+        .table thead th {
+            color: var(--gelora-green-light);
+            border-bottom: 2px solid var(--gelora-border);
+            text-transform: uppercase;
+            font-size: 0.6rem;
+            letter-spacing: 0.6px;
+            font-weight: 700;
+            padding: 6px 8px;
+        }
+        .table tbody td {
+            padding: 6px 8px;
+            vertical-align: middle;
+            border-bottom: 1px solid rgba(0, 153, 47, 0.06);
+            font-size: 0.8rem;
+        }
+        .table tbody tr:hover td {
+            background: rgba(0, 153, 47, 0.04);
+        }
+
+        .badge-gold {
+            background: rgba(255, 215, 0, 0.15);
+            color: var(--gelora-gold);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            font-family: monospace;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+        }
+        .badge-success-dark {
+            background: rgba(0, 153, 47, 0.25);
+            color: #4ade80;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.7rem;
+        }
+        .badge-secondary-dark {
+            background: rgba(107, 114, 128, 0.2);
+            color: var(--gelora-gray);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.7rem;
+        }
+
+        /* ===== FORMS ===== */
+        .form-control {
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--gelora-white);
+            border: 1px solid var(--gelora-border);
+            border-radius: 8px;
+            padding: 5px 12px;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            height: 34px;
+        }
+        .form-control:focus {
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--gelora-white);
+            border-color: var(--gelora-green);
+            box-shadow: 0 0 0 3px rgba(0, 153, 47, 0.15);
+            outline: none;
+        }
+        .form-control::placeholder { color: var(--gelora-gray); }
+        .form-label {
+            color: var(--gelora-green-light);
+            font-weight: 600;
+            font-size: 0.7rem;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== GENERATE FORM ===== */
+        .generate-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-end;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+        }
+        .generate-row .form-group {
+            flex: 1 1 auto;
+            min-width: 100px;
+        }
+        .generate-row .form-group .form-control {
+            width: 100%;
+        }
+        .generate-row .btn-generate {
+            padding: 5px 18px;
+            white-space: nowrap;
+            height: 34px;
+            flex-shrink: 0;
+        }
+
+        /* ===== CLEANUP BANNER ===== */
+        .cleanup-banner {
+            background: rgba(0, 153, 47, 0.08);
+            border: 1px solid var(--gelora-border);
+            border-radius: 8px;
+            padding: 6px 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .cleanup-banner .info {
+            color: var(--gelora-gray);
+            font-size: 0.75rem;
+        }
+        .cleanup-banner .info strong { color: var(--gelora-white); }
+
+        /* ===== FILTER & SEARCH ===== */
+        .filter-search-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: flex-end;
+        }
+        .filter-search-row .search-group {
+            flex: 1 1 180px;
+            position: relative;
+        }
+        .filter-search-row .search-group .form-control {
+            padding-left: 30px;
+            height: 30px;
+            font-size: 0.75rem;
+        }
+        .filter-search-row .search-group .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gelora-gray);
+            font-size: 0.75rem;
+        }
+        .filter-search-row .filter-group {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        .filter-search-row .filter-group .btn {
+            padding: 3px 12px;
+            font-size: 0.7rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            height: 30px;
+        }
+
+        /* ===== TABLE WRAPPER ===== */
+        .table-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 0;
+        }
+
+        /* ===== TAB PANEL ===== */
+        .tab-panel {
+            display: none;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+        }
+        .tab-panel.active {
+            display: flex;
+        }
+
+        /* ===== DASHBOARD GRID ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-bar {
+            border-top: 1px solid var(--gelora-border);
+            padding-top: 8px;
+            margin-top: 10px;
+            color: var(--gelora-gray);
+            font-size: 0.65rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .footer-bar span { color: var(--gelora-green-light); }
+
+        /* ===== POPUP ===== */
+        .popup-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* ── main card ── */
-        .main-card {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 680px;
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, .07), 0 4px 12px rgba(0, 0, 0, .03);
-            border: 1px solid rgba(0, 0, 0, .04);
-            margin-bottom: 24px;
-            flex-shrink: 0;
-            overflow: hidden;
-            transition: box-shadow .25s ease;
-        }
-
-        .main-card:hover {
-            box-shadow: 0 20px 50px rgba(0, 0, 0, .09);
-        }
-
-        /* ── modal header ── */
-        .modal-header {
-            background: #1e1e1e;
-            /* near-black */
-            color: #fafafa;
-            padding: 18px 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 16px;
-        }
-
-        .modal-header .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .modal-header .brand-dot {
-            width: 8px;
-            height: 8px;
-            background: #a0a0a0;
-            border-radius: 50%;
-            display: inline-block;
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: .4;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
-        }
-
-        .modal-header .brand-name {
-            font-weight: 700;
-            font-size: .9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #f0f0f0;
-        }
-
-        .modal-header .close-btn {
-            font-size: 1.6rem;
-            line-height: 1;
-            color: rgba(255, 255, 255, .4);
-            background: none;
-            border: 0;
-            cursor: pointer;
-            transition: color .2s;
-            padding: 0 4px;
-        }
-
-        .modal-header .close-btn:hover {
-            color: #e0e0e0;
-        }
-
-        /* ── modal body ── */
-        .modal-body {
-            padding: 32px 28px 28px;
-        }
-
-        .modal-body h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-            letter-spacing: -.02em;
-        }
-
-        .modal-body .desc {
-            font-size: .95rem;
-            line-height: 1.6;
-            color: #3d3d3d;
-            margin-bottom: 18px;
-        }
-
-        .modal-body .desc strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-
-        .modal-body .subhead {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #222;
-            margin-bottom: 8px;
-        }
-
-        .modal-body .feature-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 18px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 18px;
-        }
-
-        .modal-body .feature-list li {
-            font-size: .9rem;
-            color: #3d3d3d;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .modal-body .feature-list li::before {
-            content: "▸";
-            color: #888;
-            font-weight: 400;
-        }
-
-        /* ── textarea ── */
-        .textarea-official {
-            width: 100%;
-            height: 200px;
-            border: 1.5px solid #e2e6ec;
-            border-radius: 10px;
-            padding: 14px 16px;
-            font-size: .9rem;
-            line-height: 1.6;
-            color: #1e1e1e;
-            background: #f9fafc;
-            resize: vertical;
-            outline: none;
-            transition: border-color .25s, box-shadow .25s, background .25s;
-            font-family: 'Inter', monospace;
-        }
-
-        .textarea-official:focus {
-            border-color: #888;
-            background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(0, 0, 0, .04);
-        }
-
-        .textarea-official::placeholder {
-            color: #9aa0a8;
-            font-size: .85rem;
-        }
-
-        /* ── button ── */
-        .btn-scan {
-            background: #1e1e1e;
-            color: #fafafa;
-            padding: 12px 30px;
-            border: 0;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: .95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: background .25s, transform .15s, box-shadow .25s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
-            letter-spacing: .3px;
-        }
-
-        .btn-scan:hover {
-            background: #2d2d2d;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
-        }
-
-        .btn-scan:active {
-            transform: translateY(0);
-        }
-
-        .btn-scan svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        /* ── footer note ── */
-        .form-footer {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            margin-top: 18px;
-        }
-
-        .form-footer .hint {
-            font-size: .75rem;
-            color: #7a7f87;
-            line-height: 1.5;
-            max-width: 260px;
-        }
-
-        /* ── official footer ── */
-        .official-footer {
-            position: relative;
-            z-index: 5;
-            margin-top: auto;
-            padding: 16px 0 8px;
-            color: rgba(0, 0, 0, .25);
-            font-size: .7rem;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .official-footer a {
-            color: rgba(0, 0, 0, .5);
-            text-decoration: none;
-            transition: color .25s;
-            font-weight: 600;
-        }
-
-        .official-footer a:hover {
-            color: #1a1a1a;
-        }
-
-        /* ── popup overlay ── */
-        #popupOverlay {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
             display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            background: rgba(0, 0, 0, .6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
             justify-content: center;
             align-items: center;
+        }
+        .popup-overlay.active { display: flex; }
+        .popup-modal {
+            background: linear-gradient(145deg, #0d1f12, #080f0a);
+            border: 1px solid var(--gelora-border);
+            border-radius: 14px;
             padding: 20px;
+            max-width: 700px;
+            width: 92%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 0 60px rgba(0, 153, 47, 0.1);
+            position: relative;
         }
-
-        .popup-content {
-            width: 100%;
-            max-width: 1050px;
-            height: 88vh;
-            max-height: 800px;
-            background: #ffffff;
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, .3);
-            animation: popup-in .28s ease-out;
-        }
-
-        @keyframes popup-in {
-            0% {
-                opacity: 0;
-                transform: scale(.96) translateY(12px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .popup-nav {
-            background: #1e1e1e;
-            color: #f0f0f0;
-            padding: 12px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-shrink: 0;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 16px;
-        }
-
-        .popup-nav .badge {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .popup-nav .badge-label {
-            font-size: .7rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #b0b0b0;
-        }
-
-        .popup-nav .badge-tag {
-            font-size: .6rem;
-            background: #333;
-            padding: 2px 12px;
-            border-radius: 20px;
-            color: #999;
-            letter-spacing: .5px;
-        }
-
-        .popup-nav .close-popup-btn {
-            background: #3a3a3a;
-            border: 0;
-            color: #e0e0e0;
-            padding: 6px 18px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: .75rem;
-            text-transform: uppercase;
-            letter-spacing: .8px;
-            cursor: pointer;
-            transition: background .2s, color .2s;
-        }
-
-        .popup-nav .close-popup-btn:hover {
-            background: #555;
+        .popup-modal .popup-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--gelora-green);
             color: #fff;
+            border: none;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 153, 47, 0.3);
+            transition: all 0.3s ease;
+        }
+        .popup-modal .popup-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: var(--gelora-green-light);
+        }
+        .popup-modal .popup-header {
+            border-bottom: 2px solid var(--gelora-border);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            color: var(--gelora-green-light);
+        }
+        .popup-modal .popup-header h3 {
+            font-weight: 800;
+            margin: 0;
+            font-size: 1rem;
         }
 
-        .popup-content iframe {
+        /* ===== REWARD BOXES ===== */
+        .reward-box {
+            background: linear-gradient(145deg, #0d1f12, #080f0a);
+            border: 1px solid var(--gelora-border);
+            border-radius: 10px;
+            padding: 12px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .reward-box:hover {
+            border-color: var(--gelora-green);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 153, 47, 0.1);
+        }
+        .reward-box h4 {
+            color: var(--gelora-green-light);
+            font-weight: 800;
+            text-align: center;
+            border-bottom: 1px solid var(--gelora-border);
+            padding-bottom: 6px;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+        }
+        .reward-box h4.gold { color: var(--gelora-gold); }
+        .reward-box h4.platinum { color: #e5e4e2; }
+        .reward-item {
+            padding: 3px 8px;
+            margin: 2px 0;
+            border-radius: 6px;
+            background: rgba(0, 153, 47, 0.04);
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        .reward-item:hover {
+            background: rgba(0, 153, 47, 0.1);
+        }
+
+        /* ===== TOAST ===== */
+        .toast-custom {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #0d1f12;
+            color: var(--gelora-white);
+            padding: 12px 18px;
+            border-radius: 10px;
+            border-left: 5px solid var(--gelora-green);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+            z-index: 99999;
+            max-width: 380px;
+            font-weight: 600;
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+        .toast-custom i { font-size: 1.1rem; color: var(--gelora-green-light); }
+        .toast-custom.error { border-left-color: #ef4444; }
+        .toast-custom.error i { color: #ef4444; }
+        .toast-custom.warning { border-left-color: #f59e0b; }
+        .toast-custom.warning i { color: #f59e0b; }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ===== CONFETTI ===== */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            flex: 1;
-            border: 0;
-            background: #fafafa;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            overflow: hidden;
+        }
+        .confetti-container.hidden { display: none; }
+
+        .text-green { color: var(--gelora-green-light); }
+        .text-gold { color: var(--gelora-gold); }
+
+        /* ===== TICKET CHECK ===== */
+        .ticket-input-group {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--gelora-border);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        .ticket-input-group .row {
+            align-items: flex-end;
+        }
+        .ticket-input-group input {
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--gelora-white);
+            border: 2px solid var(--gelora-border);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+            transition: all 0.3s ease;
+            height: 36px;
+        }
+        .ticket-input-group input:focus {
+            border-color: var(--gelora-green);
+            box-shadow: 0 0 30px rgba(0, 153, 47, 0.15);
+            outline: none;
         }
 
-        /* ── responsive ── */
-        @media (max-width: 500px) {
-            .modal-header {
-                padding: 14px 18px;
-            }
-            .modal-body {
-                padding: 20px 16px 18px;
-            }
-            .modal-body h1 {
-                font-size: 1.2rem;
-            }
-            .form-footer {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .form-footer .hint {
-                max-width: 100%;
-            }
-            .btn-scan {
-                justify-content: center;
-            }
-            .popup-content {
-                height: 92vh;
-                max-height: 600px;
-                border-radius: 12px;
-            }
-            .popup-nav {
-                padding: 10px 16px;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            .popup-nav .badge-label {
-                font-size: .6rem;
-            }
+        /* ===== HISTORY TABLE ===== */
+        .history-table {
+            width: 100%;
+            color: var(--gelora-white-dim);
+        }
+        .history-table th {
+            color: var(--gelora-green-light);
+            border-bottom: 1px solid var(--gelora-border);
+            padding: 5px;
+            text-align: center;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .history-table td {
+            padding: 4px 6px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 153, 47, 0.05);
+            font-size: 0.8rem;
+        }
+        .history-table tr:hover td {
+            background: rgba(0, 153, 47, 0.04);
         }
 
-        @media (max-width: 380px) {
-            .modal-header .brand-name {
-                font-size: .75rem;
-                letter-spacing: 1px;
-            }
-            .modal-body h1 {
-                font-size: 1rem;
-            }
-            .textarea-official {
-                height: 150px;
-                font-size: .8rem;
-            }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .sidebar { width: 180px; min-width: 180px; padding: 10px; }
+            .sidebar .brand { font-size: 0.9rem; padding: 6px 8px; }
+            .sidebar .nav-link { font-size: 0.75rem; padding: 5px 8px; }
+            .main-content { padding: 12px 16px; }
+            .stats-grid { gap: 8px; }
+            .stat-card { padding: 10px 12px; }
+            .stat-card .stat-number { font-size: 1.3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { width: 50px; min-width: 50px; padding: 6px 4px; }
+            .sidebar .brand { padding: 4px; justify-content: center; margin-bottom: 8px; }
+            .sidebar .brand-text { display: none; }
+            .sidebar .nav-link { font-size: 0; padding: 6px; justify-content: center; }
+            .sidebar .nav-link i { font-size: 1rem; margin: 0; }
+            .sidebar .btn-outline-green, .sidebar .btn-danger-outline { font-size: 0; padding: 6px; }
+            .sidebar .btn-outline-green i, .sidebar .btn-danger-outline i { font-size: 0.9rem; }
+            .sidebar .sidebar-user { display: none; }
+            .sidebar .sidebar-divider { margin: 4px 0; }
+            .main-content { padding: 8px 10px; }
+            .topbar-title h1 { font-size: 1rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+            .generate-row { flex-direction: column; align-items: stretch; gap: 6px; padding: 8px 12px; }
+            .generate-row .form-group { min-width: 0; }
+            .filter-search-row { flex-direction: column; gap: 6px; }
+            .filter-search-row .filter-group { flex-wrap: wrap; }
+            .filter-search-row .filter-group .btn { flex: 1; min-width: 50px; text-align: center; }
+            .card .card-body { padding: 10px 12px; }
+            .cleanup-banner { flex-direction: column; text-align: center; padding: 6px 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .table tbody td { font-size: 0.65rem; padding: 3px 4px; }
+            .table thead th { font-size: 0.5rem; padding: 3px 4px; }
+            .badge-gold, .badge-success-dark, .badge-secondary-dark { font-size: 0.6rem; padding: 2px 6px; }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            .sidebar { width: 150px; min-width: 150px; padding: 6px 8px; }
+            .sidebar .brand { font-size: 0.75rem; padding: 4px 6px; margin-bottom: 6px; }
+            .sidebar .brand-icon { width: 24px; height: 24px; font-size: 0.7rem; }
+            .sidebar .nav-link { font-size: 0.65rem; padding: 3px 6px; }
+            .sidebar .nav-link i { font-size: 0.7rem; }
+            .sidebar .btn-outline-green, .sidebar .btn-danger-outline { padding: 3px 6px; font-size: 0.65rem; }
+            .main-content { padding: 8px 12px; }
+            .topbar { margin-bottom: 6px; }
+            .topbar-title h1 { font-size: 0.95rem; }
+            .topbar-title p { font-size: 0.65rem; }
+            .stat-card .stat-number { font-size: 1rem; }
+            .stat-card .stat-label { font-size: 0.5rem; }
+            .stat-card { padding: 4px 8px; }
+            .stats-grid { gap: 4px; margin-bottom: 6px; }
+            .generate-row { padding: 6px 10px; gap: 6px; margin-bottom: 6px; }
+            .generate-row .form-group .form-control { height: 26px; font-size: 0.7rem; padding: 3px 8px; }
+            .generate-row .btn-generate { height: 26px; font-size: 0.7rem; padding: 3px 12px; }
+            .form-label { font-size: 0.55rem; }
+            .cleanup-banner { padding: 3px 10px; margin-bottom: 6px; }
+            .cleanup-banner .info { font-size: 0.6rem; }
+            .filter-search-row { gap: 4px; margin-bottom: 6px; }
+            .filter-search-row .filter-group .btn { font-size: 0.55rem; padding: 2px 8px; height: 24px; }
+            .filter-search-row .search-group .form-control { height: 24px; font-size: 0.65rem; }
+            .table thead th { font-size: 0.45rem; padding: 3px 4px; }
+            .table tbody td { font-size: 0.6rem; padding: 3px 4px; }
+            .badge-gold, .badge-success-dark, .badge-secondary-dark { font-size: 0.55rem; padding: 1px 6px; }
+            .card .card-body { padding: 6px 10px; }
+            .footer-bar { font-size: 0.55rem; padding-top: 4px; margin-top: 6px; }
+            .btn-green { padding: 3px 10px; font-size: 0.65rem; height: 26px; }
         }
     </style>
 </head>
-
 <body>
 
-    <!-- background pattern -->
-    <div class="bg-pattern" aria-hidden="true"></div>
+<div class="app-container">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+        <a class="brand" href="#">
+            <div class="brand-icon"><i class="fas fa-crown"></i></div>
+            <div class="brand-text">GELORA<span>GAMING</span></div>
+        </a>
 
-    <!-- ─── MAIN CARD ─── -->
-    <div class="main-card">
-
-        <!-- header -->
-        <div class="modal-header">
-            <div class="brand">
-                <span class="brand-dot"></span>
-                <span class="brand-name">SEOZEA</span>
-            </div>
-            <button class="close-btn" onclick="document.getElementById('domainInput').value=''" aria-label="Kosongkan input">&times;</button>
+        <!-- User Info -->
+        <div class="sidebar-user">
+            <div class="user-name" id="sidebarUsername">Admin</div>
+            <div class="user-role"><i class="fas fa-shield-alt me-1"></i> Administrator</div>
         </div>
 
-        <!-- body -->
-        <div class="modal-body">
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="#" data-tab="dashboard">
+                <i class="fas fa-chart-pie"></i> Dashboard
+            </a>
+            <a class="nav-link" href="#" data-tab="vouchers">
+                <i class="fas fa-ticket-alt"></i> Kelola Tiket
+            </a>
+            <a class="nav-link" href="#" data-tab="tickets">
+                <i class="fas fa-qrcode"></i> Cek Tiket
+            </a>
+            <a class="nav-link" href="#" data-tab="prizes">
+                <i class="fas fa-gift"></i> Hadiah Wheel
+            </a>
+            <a class="nav-link" href="#" data-tab="spins">
+                <i class="fas fa-history"></i> Riwayat Spin
+            </a>
+            <a class="nav-link" href="#" data-tab="settings">
+                <i class="fas fa-cog"></i> Pengaturan
+            </a>
+            <a class="nav-link" href="#" data-tab="password">
+                <i class="fas fa-key"></i> Reset Password
+            </a>
+        </nav>
 
-            <h1>Layanan Cek Trust Positif Komdigi Tercepat</h1>
+        <hr class="sidebar-divider">
 
-            <p class="desc">
-                Apakah domain Anda terkena blokir? <strong>SEOZEA</strong> menyediakan alat otomatis untuk melakukan <strong>cek internet positif</strong> langsung ke database resmi <strong>Trust Positif Komdigi</strong>. Cukup masukkan list domain dan dapatkan hasilnya secara <strong>real-time</strong>.
-            </p>
+        <a class="btn-outline-green" target="_blank" href="#">
+            <i class="fas fa-eye"></i> Lihat Wheel
+        </a>
+        <button class="btn-danger-outline" onclick="handleLogout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </aside>
 
-            <p class="subhead">Kenapa Cek Domain di SEOZEA?</p>
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-content">
 
-            <ul class="feature-list">
-                <li>Cek status blokir domain secara massal (hingga 1000 link)</li>
-                <li>Update database mengikuti Trust Positif terbaru 2026</li>
-            </ul>
-
-            <!-- textarea -->
-            <div style="margin-bottom: 16px;">
-                <textarea id="domainInput" class="textarea-official" placeholder="Masukkan list domain di sini…&#10;Satu link per baris (maksimal 1000 link)."></textarea>
-            </div>
-
-            <!-- footer row -->
-            <div class="form-footer">
-                <div class="hint">
-                    * Sistem otomasi pengecekan database Trust Positif.<br />
-                    * Hasil pemindaian akan ditampilkan secara instan oleh SEOZEA.
+        <!-- ===== DASHBOARD ===== -->
+        <div id="tab-dashboard" class="tab-panel active">
+            <div class="topbar">
+                <div class="topbar-title">
+                    <h1><i class="fas fa-crown text-green me-2"></i>Dashboard</h1>
+                    <p>Ringkasan performa tiket dan klaim hadiah GELORAGAMING.</p>
                 </div>
-                <button onclick="scanSekarang()" class="btn-scan">
-                    <svg viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                    Scan Sekarang
+                <button class="btn-green" onclick="openTab('vouchers')">
+                    <i class="fas fa-plus"></i> Buat Tiket
                 </button>
             </div>
 
-        </div><!-- /modal-body -->
-    </div><!-- /main-card -->
-
-    <!-- ─── FOOTER ─── -->
-    <footer class="official-footer">
-        &copy; 2026 <a href="https://shortq.link/menyalasastra" target="_blank"><b>NARASIGAMING</b></a> &bull; SEOZEA
-    </footer>
-
-    <!-- ─── POPUP ─── -->
-    <div id="popupOverlay">
-        <div class="popup-content">
-            <div class="popup-nav">
-                <div class="badge">
-                    <span class="badge-label">SCAN RESULT</span>
-                    <span class="badge-tag">SECURE_MODE</span>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-ticket-alt"></i></div>
+                    <div class="stat-label">Total Tiket</div>
+                    <div class="stat-number green" id="totalVouchers">0</div>
                 </div>
-                <button class="close-popup-btn" onclick="closePopup()">Tutup</button>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-label">Belum Dipakai</div>
+                    <div class="stat-number" id="unusedVouchers">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-sync-alt"></i></div>
+                    <div class="stat-label">Sudah Spin</div>
+                    <div class="stat-number gold" id="usedSpins">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-gift"></i></div>
+                    <div class="stat-label">Hadiah Aktif</div>
+                    <div class="stat-number green" id="activePrizes">0</div>
+                </div>
             </div>
-            <iframe id="resultFrame" name="resultFrame"></iframe>
+
+            <div class="card" style="flex:1; display:flex; flex-direction:column; min-height:0;">
+                <div class="card-body" style="flex:1; display:flex; flex-direction:column; min-height:0;">
+                    <h5 class="fw-bold mb-2 text-green" style="font-size:0.85rem; flex-shrink:0;">
+                        <i class="fas fa-history me-2"></i> Riwayat Spin Terbaru
+                    </h5>
+                    <div class="table-wrapper">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Waktu</th>
+                                    <th>Kode Tiket</th>
+                                    <th>User ID</th>
+                                    <th>Hadiah</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentHistoryBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                © 2026 <span>GELORAGAMING</span>. TERMURAH TERBUKA.
+            </div>
+        </div>
+
+        <!-- ===== VOUCHERS (TICKETS) ===== -->
+        <div id="tab-vouchers" class="tab-panel">
+            <div class="topbar">
+                <div class="topbar-title">
+                    <h1><i class="fas fa-ticket-alt text-green me-2"></i>Kelola Tiket</h1>
+                    <p>Buat dan kelola tiket lucky wheel berdasarkan User ID.</p>
+                </div>
+            </div>
+
+            <!-- Auto Cleanup Banner -->
+            <div class="cleanup-banner">
+                <div class="info">
+                    <i class="fas fa-broom text-green me-2"></i>
+                    <strong>Auto Cleanup:</strong> Tiket yang sudah terpakai akan otomatis dihapus setelah <strong>7 hari</strong> untuk menjaga performa sistem.
+                </div>
+                <button class="btn-green-outline" onclick="cleanupUsedTickets()" style="padding: 3px 12px; font-size:0.7rem; height:28px;">
+                    <i class="fas fa-trash-alt"></i> Bersihkan Sekarang
+                </button>
+            </div>
+
+            <div class="card" style="flex:1; display:flex; flex-direction:column; min-height:0;">
+                <div class="card-body" style="flex:1; display:flex; flex-direction:column; min-height:0;">
+
+                    <!-- GENERATE FORM -->
+                    <div class="generate-row">
+                        <div class="form-group">
+                            <label class="form-label">Jumlah Tiket</label>
+                            <input type="number" class="form-control" id="ticketCount" value="10" min="1" max="100">
+                        </div>
+                        <div class="form-group" style="flex:2;">
+                            <label class="form-label">User ID Tujuan</label>
+                            <input type="text" class="form-control" id="targetUserId" placeholder="Masukkan User ID" value="player">
+                        </div>
+                        <div class="form-group" style="flex:0 0 auto;">
+                            <button class="btn-green btn-generate" onclick="generateTickets()">
+                                <i class="fas fa-plus"></i> Generate Tiket
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Search & Filter -->
+                    <div class="filter-search-row">
+                        <div class="search-group">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="form-control" id="searchTicket" placeholder="Cari kode atau user ID..." oninput="filterTickets()">
+                        </div>
+                        <div class="filter-group">
+                            <button class="btn-green-outline" onclick="filterTickets('available')" id="filterAvailable">
+                                <i class="fas fa-check-circle"></i> Tersedia
+                            </button>
+                            <button class="btn-danger-outline-sm" onclick="filterTickets('used')" id="filterUsed">
+                                <i class="fas fa-check-double"></i> Terpakai
+                            </button>
+                            <button class="btn-gold-outline active-filter" onclick="filterTickets('all')" id="filterAll">
+                                <i class="fas fa-list"></i> Semua
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="table-wrapper">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th style="width:35px;">#</th>
+                                    <th>Kode Tiket</th>
+                                    <th>User ID</th>
+                                    <th>Status</th>
+                                    <th>Dibuat</th>
+                                    <th style="width:50px;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="voucherList">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="emptyTickets" class="text-center text-muted py-2" style="display:none;">
+                        <i class="fas fa-inbox fa-2x mb-1 d-block"></i>
+                        Belum ada tiket. Generate tiket sekarang!
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                © 2026 <span>GELORAGAMING</span>. TERMURAH TERBUKA.
+            </div>
+        </div>
+
+        <!-- ===== TICKETS (CHECK) ===== -->
+        <div id="tab-tickets" class="tab-panel">
+            <div class="topbar">
+                <div class="topbar-title">
+                    <h1><i class="fas fa-qrcode text-green me-2"></i>Cek Tiket</h1>
+                    <p>Cek status tiket dan validasi kode.</p>
+                </div>
+            </div>
+
+            <div class="card" style="flex:1;">
+                <div class="card-body">
+                    <div class="ticket-input-group">
+                        <div class="row g-2">
+                            <div class="col-md-5">
+                                <label class="form-label">User ID</label>
+                                <input type="text" class="form-control" id="checkUserId" placeholder="Masukkan User ID">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Kode Tiket</label>
+                                <input type="text" class="form-control" id="checkTicket" placeholder="Masukkan kode tiket">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn-green w-100" onclick="checkTicket()" style="height:36px;">
+                                    <i class="fas fa-search"></i> Cek
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ticketResult" class="mt-3" style="display:none;"></div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                © 2026 <span>GELORAGAMING</span>. TERMURAH TERBUKA.
+            </div>
+        </div>
+
+        <!-- ===== PRIZES ===== -->
+        <div id="tab-prizes" class="tab-panel">
+            <div class="topbar">
+                <div class="topbar-title">
+                    <h1><i class="fas fa-gift text-green me-2"></i>Hadiah Wheel</h1>
+                    <p>Kelola daftar hadiah yang tersedia di lucky wheel.</p>
+                </div>
+                <button class="btn-green" onclick="addPrize()">
+                    <i class="fas fa-plus"></i> Tambah Hadiah
+                </button>
+            </div>
+
+            <div class="card" style="flex:1; display:flex; flex-direction:column; min-height:0;">
+                <div class="card-body" style="flex:1; display:flex; flex-direction:column; min-height:0;">
+                    <div class="table-wrapper">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nama Hadiah</th>
+                                    <th>Level</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="prizeList">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                © 2026 <span>GELORAGAMING</span>. TERMURAH TERBUKA.
+            </div>
+        </div>
+
+        <!-- ===== SPINS ===== -->
+        <div id="tab-spins" class="tab-panel">
+            <div class="topbar">
+                <div class="topbar-title">
+                    <h1><i class="fas fa-history text-green me-2"></i>Riwayat Spin</h1>
+                    <p>Seluruh riwayat putaran lucky wheel.</p>
+                </div>
+                <button class="btn-green-outline" onclick="refreshSpins()">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+
+            <div class="cleanup-banner">
+                <div class="info">
+                    <i class="fas fa-database text-green me-2"></i>
+                    Total riwayat: <strong id="spinCountTotal">0</strong> data
+                </div>
+                <button class="btn-danger-outline-sm" onclick="clearAllSpins()">
+                    <i class="fas fa-trash-alt"></i> Hapus Semua Riwayat
+                </button>
+            </div>
+
+            <div class="card" style="flex:1; display:flex; flex-direction:column; min-height:0;">
+                <div class="card-body" style="flex:1; display:flex; flex-direction:column; min-height:0;">
+                    <div class="table-wrapper">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th style="width:35px;">#</th>
+                                    <th>Waktu</th>
+                                    <th>User ID</th>
+                                    <th>Kode Tiket</th>
+                                    <th>Hadiah</th>
+                                    <th>Status</th>
+                                    <th style="width:50px;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="spinHistory">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                © 2026 <span>GELORAGAMING</span>. TERMURAH TERBUKA.
+            </div>
+        </div>
+
+        <!-- ===== SETTINGS ===== -->
+        <div id="tab-settings" class="tab-panel">
+            <div class="topbar">
+                <div class="topbar-title">
+                    <h1><i class="fas fa-cog text-green me-2"></i>Pengaturan</h1>
+                    <p>Konfigurasi sistem dan auto-cleanup.</p>
+                </div>
+            </div>
+
+            <div class="card" style="flex:1;">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Auto Cleanup (hari)</label>
+                            <input type="number" class="form-control" id="cleanupDays" value="7" min="1" max="30">
+                            <small class="text-muted" style="color: var(--gelora-gray) !important; font-size:0.65rem;">Tiket terpakai akan dihapus setelah X hari</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Logo Website</label>
+                            <input type="file" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Warna Tema Utama</label>
+                            <input type="color" class="form-control" value="#00992f">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Nama Website</label>
+                            <input type="text" class="form-control" value="GELORAGAMING">
+                        </div>
+                        <div class="col-12">
+                            <button class="btn-green" onclick="saveSettings()">
+                                <i class="fas fa-save"></i> Simpan Pengaturan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                © 2026 <span>GELORAGAMING</span>. TERMURAH TERBUKA.
+            </div>
+        </div>
+
+        <!-- ===== PASSWORD ===== -->
+        <div id="tab-password" class="tab-panel">
+            <div class="topbar">
+                <div class="topbar-title">
+                    <h1><i class="fas fa-key text-green me-2"></i>Reset Password</h1>
+                    <p>Ganti password admin Anda.</p>
+                </div>
+            </div>
+
+            <div class="card" style="flex:1;">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Password Lama</label>
+                            <input type="password" class="form-control" id="oldPassword" placeholder="Masukkan password lama">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Password Baru</label>
+                            <input type="password" class="form-control" id="newPassword" placeholder="Masukkan password baru">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Konfirmasi Password Baru</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Konfirmasi password baru">
+                        </div>
+                        <div class="col-12">
+                            <button class="btn-green" onclick="resetPassword()">
+                                <i class="fas fa-key"></i> Reset Password
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar">
+                © 2026 <span>GELORAGAMING</span>. TERMURAH TERBUKA.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ===== POPUP: HISTORY ===== -->
+<div id="popupHistory" class="popup-overlay">
+    <div class="popup-modal">
+        <button class="popup-close" onclick="closePopup('popupHistory')">✕</button>
+        <div class="popup-header">
+            <h3><i class="fas fa-history me-2"></i> Riwayat Spin Terakhir</h3>
+        </div>
+        <div style="max-height: 400px; overflow-y: auto;">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>User ID</th>
+                        <th>Hadiah</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <!-- ─── MAIN SCRIPT ─── -->
-    <script>
-        (function() {
-            'use strict';
+<!-- ===== POPUP: REWARDS ===== -->
+<div id="popupRewards" class="popup-overlay">
+    <div class="popup-modal" style="max-width: 850px;">
+        <button class="popup-close" onclick="closePopup('popupRewards')">✕</button>
+        <div class="popup-header">
+            <h3><i class="fas fa-trophy me-2"></i> Daftar Hadiah Lucky Wheel</h3>
+            <p style="color: var(--gelora-gray); margin: 0; font-size: 0.8rem;">GELORAGAMING memiliki berbagai macam hadiah menarik.</p>
+        </div>
+        <div class="row g-3" id="rewardsContainer">
+        </div>
+    </div>
+</div>
 
-            // ── config ──
-            const C = {
-                baseUrl: 'https://trustpositif.komdigi.go.id/welcome',
-                csrfToken: '6aece8f48ccb960c5a29b6030be20979'
-            };
+<!-- ===== CONFETTI ===== -->
+<div id="confettiContainer" class="confetti-container hidden">
+    <canvas id="confettiCanvas"></canvas>
+</div>
 
-            // ── anti‑theft / dev‑tools guard ──
-            const guard = function() {
-                const el = document.createElement('div');
-                el.style.cssText =
-                    'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#1a1a1a;color:#fff;padding:32px 40px;z-index:10000;border-radius:16px;font-weight:700;text-align:center;box-shadow:0 0 80px rgba(0,0,0,.6);border:1px solid #444;font-size:1.1rem;line-height:1.6;';
-                el.innerHTML =
-                    '⚠️ <span style="opacity:.7;font-weight:400;">Langsung <kbd>Ctrl+V</kbd> aja, jangan coba‑coba maling script ya!</span><br><span style="font-size:.75rem;opacity:.5;display:block;margin-top:6px;">Mengalihkan sistem…</span>';
-                document.body.appendChild(el);
-                setTimeout(() => {
-                    location.href = 'https://seotatto.pages.dev/';
-                }, 2000);
-            };
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ================================================================
+// SESSION CHECK - Redirect ke login jika tidak ada session
+// ================================================================
 
-            // ── scan function ──
-            window.scanSekarang = function() {
-                const input = document.getElementById('domainInput').value.trim();
-                if (!input) return;
+function checkAuth() {
+    const session = JSON.parse(localStorage.getItem('gelora_admin_session'));
+    if (!session) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    
+    // Cek expired
+    if (Date.now() > session.expires) {
+        localStorage.removeItem('gelora_admin_session');
+        window.location.href = 'login.html';
+        return false;
+    }
+    
+    return true;
+}
 
-                const url = C.baseUrl +
-                    '?csrf_token=' + C.csrfToken +
-                    '&recaptcha_token=&domains=' + encodeURIComponent(input);
+function getUsername() {
+    const session = JSON.parse(localStorage.getItem('gelora_admin_session'));
+    return session ? session.username : 'Admin';
+}
 
-                document.getElementById('popupOverlay').style.display = 'flex';
-                document.getElementById('resultFrame').src = url;
-            };
+// ================================================================
+// LOGOUT
+// ================================================================
 
-            // ── close popup ──
-            window.closePopup = function() {
-                document.getElementById('popupOverlay').style.display = 'none';
-                document.getElementById('resultFrame').src = '';
-            };
+function handleLogout() {
+    if (confirm('Yakin ingin logout?')) {
+        localStorage.removeItem('gelora_admin_session');
+        window.location.href = 'login.html';
+    }
+}
 
-            // ── guard: context menu ──
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                guard();
-            });
+// ================================================================
+// DATA STORE
+// ================================================================
 
-            // ── guard: devtools shortcuts ──
-            document.addEventListener('keydown', function(e) {
-                const key = e.keyCode || e.which;
-                const ctrl = e.ctrlKey || e.metaKey;
-                if (
-                    key === 123 || // F12
-                    (ctrl && key === 73) || // Ctrl+Shift+I (inspect)
-                    (ctrl && key === 85) // Ctrl+U (view source)
-                ) {
-                    e.preventDefault();
-                    guard();
+const AppData = {
+    tickets: [],
+    spins: [],
+    prizes: [
+        { name: 'Saldo Rp 5.000', level: 'Silver', active: true },
+        { name: 'Saldo Rp 15.000', level: 'Silver', active: true },
+        { name: 'Saldo Rp 20.000', level: 'Silver', active: true },
+        { name: 'Saldo Rp 7.500', level: 'Silver', active: true },
+        { name: 'Saldo Rp 500.000', level: 'Silver', active: true },
+        { name: 'Saldo Rp 100.000', level: 'Silver', active: true },
+        { name: 'Saldo Rp 10.000', level: 'Silver', active: true },
+        { name: 'Saldo Rp 1.000.000', level: 'Silver', active: true },
+        { name: 'Saldo Rp 10.000', level: 'Gold', active: true },
+        { name: 'Saldo Rp 250.000', level: 'Gold', active: true },
+        { name: 'Saldo Rp 100.000', level: 'Gold', active: true },
+        { name: 'Saldo Rp 1.000.000', level: 'Gold', active: true },
+        { name: 'Saldo Rp 50.000', level: 'Gold', active: true },
+        { name: 'Saldo Rp 2.000.000', level: 'Gold', active: true },
+        { name: 'Saldo Rp 15.000', level: 'Gold', active: true },
+        { name: 'Saldo Rp 20.000', level: 'Gold', active: true },
+        { name: 'Saldo Rp 5.000.000', level: 'Platinum', active: true },
+        { name: 'YAMAHA NMAX 2022', level: 'Platinum', active: true },
+        { name: 'Saldo Rp 1.000.000', level: 'Platinum', active: true },
+        { name: 'Saldo Rp 500.000', level: 'Platinum', active: true },
+        { name: 'Saldo Rp 100.000', level: 'Platinum', active: true },
+        { name: 'Saldo Rp 250.000', level: 'Platinum', active: true },
+        { name: 'Saldo Rp 50.000', level: 'Platinum', active: true },
+        { name: 'IPHONE 14 PROMAX', level: 'Platinum', active: true },
+    ],
+    stats: {
+        totalTickets: 0,
+        unusedTickets: 0,
+        usedSpins: 0,
+        activePrizes: 0
+    },
+    currentFilter: 'all'
+};
+
+// ================================================================
+// INIT - Generate sample data
+// ================================================================
+
+function initSampleData() {
+    const sampleTickets = [
+        { code: '19FL3Q', userId: 'player3898', status: 'available', created: '2026-07-06 05:23:07' },
+        { code: 'V5CAK1', userId: 'player5074', status: 'available', created: '2026-07-06 05:23:07' },
+        { code: 'DKAF12', userId: 'player6493', status: 'available', created: '2026-07-06 05:23:07' },
+        { code: 'MJ7566', userId: 'player7859', status: 'available', created: '2026-07-06 05:23:07' },
+        { code: 'ASMR4M', userId: 'player1159', status: 'available', created: '2026-07-06 05:23:07' },
+        { code: 'SMTYXK', userId: 'player3348', status: 'available', created: '2026-07-06 05:23:07' },
+        { code: 'J0Z0A5', userId: 'player4903', status: 'available', created: '2026-07-06 05:23:07' },
+        { code: 'A7F3K', userId: 'player001', status: 'used', created: '2026-07-06 03:07:29' },
+        { code: '8ZX8M', userId: 'player002', status: 'used', created: '2026-07-06 02:10:27' },
+        { code: 'C9P4L', userId: 'player003', status: 'available', created: '2026-07-06 01:07:29' },
+    ];
+    
+    sampleTickets.forEach(t => AppData.tickets.push(t));
+    
+    const sampleSpins = [
+        { id: 1, time: '2026-07-06 08:56:58', userId: 'player001', code: 'A7F3K', prize: 'Rp 20.000', status: 'Success' },
+        { id: 2, time: '2026-07-06 08:01:26', userId: 'player002', code: '8ZX8M', prize: 'Rp 5.000', status: 'Success' },
+        { id: 3, time: '2026-07-06 06:25:08', userId: 'player003', code: 'C9P4L', prize: 'Rp 5.000', status: 'Success' },
+    ];
+    
+    sampleSpins.forEach(s => AppData.spins.push(s));
+    
+    updateStats();
+}
+
+function generateCode() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let code = '';
+    for (let j = 0; j < 6; j++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return code;
+}
+
+// ================================================================
+// TAB NAVIGATION
+// ================================================================
+
+document.querySelectorAll('.nav-link[data-tab]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        openTab(this.dataset.tab);
+    });
+});
+
+function openTab(tabName) {
+    document.querySelectorAll('.nav-link[data-tab]').forEach(l => l.classList.remove('active'));
+    const activeLink = document.querySelector(`.nav-link[data-tab="${tabName}"]`);
+    if (activeLink) activeLink.classList.add('active');
+    
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById(`tab-${tabName}`);
+    if (panel) panel.classList.add('active');
+    
+    if (tabName === 'spins') refreshSpins();
+    if (tabName === 'vouchers') renderTickets();
+    if (tabName === 'prizes') renderPrizes();
+}
+
+// ================================================================
+// DASHBOARD
+// ================================================================
+
+function updateStats() {
+    AppData.stats.totalTickets = AppData.tickets.length;
+    AppData.stats.unusedTickets = AppData.tickets.filter(t => t.status === 'available').length;
+    AppData.stats.usedSpins = AppData.spins.length;
+    AppData.stats.activePrizes = AppData.prizes.filter(p => p.active).length;
+    
+    document.getElementById('totalVouchers').textContent = AppData.stats.totalTickets;
+    document.getElementById('unusedVouchers').textContent = AppData.stats.unusedTickets;
+    document.getElementById('usedSpins').textContent = AppData.stats.usedSpins;
+    document.getElementById('activePrizes').textContent = AppData.stats.activePrizes;
+    
+    const tbody = document.getElementById('recentHistoryBody');
+    const recent = AppData.spins.slice(-8).reverse();
+    tbody.innerHTML = recent.map(s => `
+        <tr>
+            <td style="color: var(--gelora-gray); font-size:0.7rem;">${s.time}</td>
+            <td><span class="badge-gold">${s.code}</span></td>
+            <td><strong>${s.userId}</strong></td>
+            <td><span style="color: var(--gelora-green-light);">${s.prize}</span></td>
+        </tr>
+    `).join('');
+}
+
+// ================================================================
+// TICKETS (VOUCHERS)
+// ================================================================
+
+function generateTickets() {
+    const count = parseInt(document.getElementById('ticketCount').value) || 10;
+    let userId = document.getElementById('targetUserId').value.trim();
+    
+    if (!userId) {
+        showToast('Harap masukkan User ID tujuan!', 'warning');
+        return;
+    }
+    
+    let newTickets = [];
+    for (let i = 0; i < count; i++) {
+        newTickets.push({
+            code: generateCode(),
+            userId: userId,
+            status: 'available',
+            created: new Date().toISOString().replace('T', ' ').slice(0, 19)
+        });
+    }
+    
+    AppData.tickets = [...newTickets, ...AppData.tickets];
+    updateStats();
+    renderTickets();
+    showToast(`Berhasil generate ${count} tiket untuk User ID "${userId}"! 🎫`);
+    triggerConfetti();
+}
+
+function renderTickets(filter = AppData.currentFilter) {
+    const tbody = document.getElementById('voucherList');
+    const emptyDiv = document.getElementById('emptyTickets');
+    
+    let filtered = AppData.tickets;
+    if (filter === 'available') {
+        filtered = filtered.filter(t => t.status === 'available');
+    } else if (filter === 'used') {
+        filtered = filtered.filter(t => t.status === 'used');
+    }
+    
+    const search = document.getElementById('searchTicket')?.value?.toLowerCase() || '';
+    if (search) {
+        filtered = filtered.filter(t => 
+            t.code.toLowerCase().includes(search) || 
+            t.userId.toLowerCase().includes(search)
+        );
+    }
+    
+    if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        emptyDiv.style.display = 'block';
+        return;
+    }
+    emptyDiv.style.display = 'none';
+    
+    tbody.innerHTML = filtered.map((t, i) => `
+        <tr>
+            <td>${i + 1}</td>
+            <td><span class="badge-gold" style="font-size:0.75rem; letter-spacing:1px;">${t.code}</span></td>
+            <td><strong style="color: var(--gelora-white); font-size:0.8rem;">${t.userId}</strong></td>
+            <td>
+                <span class="${t.status === 'available' ? 'badge-success-dark' : 'badge-secondary-dark'}">
+                    ${t.status === 'available' ? 'Tersedia' : 'Terpakai'}
+                </span>
+            </td>
+            <td style="color: var(--gelora-gray); font-size:0.65rem;">${t.created}</td>
+            <td>
+                ${t.status === 'available' ? 
+                    `<button class="btn-danger-outline-sm" onclick="deleteTicket('${t.code}')" style="padding:1px 8px; font-size:0.6rem; height:22px;">
+                        <i class="fas fa-trash"></i>
+                    </button>` : 
+                    `<span style="color: var(--gelora-gray); font-size:0.6rem;">-</span>`
                 }
-            });
+            </td>
+        </tr>
+    `).join('');
+}
 
-            // ── close popup on Escape ──
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') window.closePopup();
-            });
+function filterTickets(filter) {
+    AppData.currentFilter = filter;
+    renderTickets(filter);
+    
+    document.querySelectorAll('.filter-group .btn').forEach(btn => {
+        btn.style.opacity = '0.5';
+        btn.style.borderColor = 'var(--gelora-border)';
+    });
+    
+    let activeBtn;
+    if (filter === 'available') activeBtn = document.getElementById('filterAvailable');
+    else if (filter === 'used') activeBtn = document.getElementById('filterUsed');
+    else activeBtn = document.getElementById('filterAll');
+    
+    if (activeBtn) {
+        activeBtn.style.opacity = '1';
+        activeBtn.style.borderColor = 'var(--gelora-gold)';
+    }
+}
 
-            // ── close popup on overlay click ──
-            window.onclick = function(e) {
-                const overlay = document.getElementById('popupOverlay');
-                if (e.target === overlay) window.closePopup();
-            };
+function deleteTicket(code) {
+    if (!confirm(`Hapus tiket ${code}?`)) return;
+    const idx = AppData.tickets.findIndex(t => t.code === code && t.status === 'available');
+    if (idx > -1) {
+        AppData.tickets.splice(idx, 1);
+        updateStats();
+        renderTickets();
+        showToast(`Tiket ${code} dihapus.`);
+    }
+}
 
-        })();
-    </script>
+function cleanupUsedTickets() {
+    const days = parseInt(document.getElementById('cleanupDays')?.value) || 7;
+    const cutoff = new Date(Date.now() - (days * 86400000));
+    
+    const before = AppData.tickets.length;
+    AppData.tickets = AppData.tickets.filter(t => {
+        if (t.status === 'used') {
+            const created = new Date(t.created);
+            return created > cutoff;
+        }
+        return true;
+    });
+    
+    const removed = before - AppData.tickets.length;
+    updateStats();
+    renderTickets();
+    
+    if (removed > 0) {
+        showToast(`Dibersihkan ${removed} tiket terpakai yang berusia > ${days} hari. 🧹`);
+    } else {
+        showToast(`Tidak ada tiket terpakai yang perlu dibersihkan.`, 'warning');
+    }
+}
 
-    <!-- ─── THIRD‑PARTY BEACONS (kept as-is) ─── -->
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
-    integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
-    data-cf-beacon='{"version":"2024.11.0","token":"a9dc7a8db5e54b98a584dd5cb48e4e10","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
-crossorigin="anonymous">
+// ================================================================
+// TICKETS (CHECK)
+// ================================================================
+
+function checkTicket() {
+    const userId = document.getElementById('checkUserId').value.trim();
+    const code = document.getElementById('checkTicket').value.trim();
+    const resultDiv = document.getElementById('ticketResult');
+    
+    if (!userId || !code) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = `
+            <div class="alert" style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #f87171; border-radius: 8px; padding: 12px;">
+                <i class="fas fa-exclamation-triangle me-2"></i> Harap isi User ID dan kode tiket!
+            </div>
+        `;
+        return;
+    }
+    
+    const found = AppData.tickets.find(t => t.code === code && t.userId === userId);
+    const used = AppData.spins.some(s => s.code === code);
+    
+    if (found && found.status === 'available' && !used) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = `
+            <div class="alert" style="background: rgba(0, 153, 47, 0.1); border: 1px solid var(--gelora-green); color: var(--gelora-green-light); border-radius: 8px; padding: 12px;">
+                <i class="fas fa-check-circle me-2" style="color: var(--gelora-green-light);"></i>
+                <strong>Tiket Valid!</strong><br>
+                User ID: <strong>${userId}</strong><br>
+                Kode: <strong style="color: var(--gelora-gold);">${code}</strong><br>
+                Status: <span class="badge-success-dark">Tersedia untuk Spin</span>
+                <br><br>
+                <button class="btn-green" onclick="useTicket('${code}')" style="padding:4px 14px; font-size:0.75rem; height:30px;">
+                    <i class="fas fa-play"></i> Gunakan Tiket
+                </button>
+            </div>
+        `;
+    } else if (found && found.status === 'used' || used) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = `
+            <div class="alert" style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #f87171; border-radius: 8px; padding: 12px;">
+                <i class="fas fa-times-circle me-2"></i>
+                <strong>Tiket Sudah Digunakan!</strong><br>
+                Kode: <strong style="color: #f87171;">${code}</strong> sudah dipakai untuk spin.
+            </div>
+        `;
+    } else {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = `
+            <div class="alert" style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #f87171; border-radius: 8px; padding: 12px;">
+                <i class="fas fa-times-circle me-2"></i>
+                <strong>Tiket Tidak Ditemukan!</strong><br>
+                Pastikan User ID dan kode tiket benar.
+            </div>
+        `;
+    }
+}
+
+function useTicket(code) {
+    const found = AppData.tickets.find(t => t.code === code && t.status === 'available');
+    if (found) {
+        found.status = 'used';
+        AppData.spins.push({
+            id: AppData.spins.length + 1,
+            time: new Date().toISOString().replace('T', ' ').slice(0, 19),
+            userId: found.userId,
+            code: found.code,
+            prize: ['Rp 20.000', 'Rp 5.000', 'Rp 10.000', 'Rp 100.000', 'Rp 50.000'][Math.floor(Math.random() * 5)],
+            status: 'Success'
+        });
+        updateStats();
+        renderTickets();
+        document.getElementById('ticketResult').style.display = 'none';
+        showToast(`Tiket ${code} berhasil digunakan! 🎉`);
+        triggerConfetti();
+    }
+}
+
+// ================================================================
+// PRIZES
+// ================================================================
+
+function renderPrizes() {
+    const tbody = document.getElementById('prizeList');
+    const levelColors = { Silver: '#c0c0c0', Gold: 'var(--gelora-gold)', Platinum: '#e5e4e2' };
+    
+    tbody.innerHTML = AppData.prizes.map((p, i) => `
+        <tr>
+            <td>${i + 1}</td>
+            <td>${p.name}</td>
+            <td>
+                <span style="color: ${levelColors[p.level]}; font-weight: 700;">
+                    ${p.level}
+                </span>
+            </td>
+            <td>
+                <span class="${p.active ? 'badge-success-dark' : 'badge-secondary-dark'}">
+                    ${p.active ? 'Aktif' : 'Nonaktif'}
+                </span>
+            </td>
+            <td>
+                <button class="btn-green-outline" onclick="togglePrize(${i})" style="padding:2px 8px; font-size:0.65rem; height:26px;">
+                    <i class="fas ${p.active ? 'fa-pause' : 'fa-play'}"></i>
+                </button>
+                <button class="btn-danger-outline-sm" onclick="deletePrize(${i})" style="padding:2px 6px; font-size:0.6rem; height:22px;">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function togglePrize(index) {
+    AppData.prizes[index].active = !AppData.prizes[index].active;
+    renderPrizes();
+    updateStats();
+    showToast(`Status hadiah diperbarui.`);
+}
+
+function deletePrize(index) {
+    if (!confirm(`Hapus hadiah "${AppData.prizes[index].name}"?`)) return;
+    AppData.prizes.splice(index, 1);
+    updateStats();
+    renderPrizes();
+    showToast(`Hadiah dihapus.`);
+}
+
+function addPrize() {
+    const name = prompt('Masukkan nama hadiah:', 'Saldo Rp 50.000');
+    if (!name) return;
+    
+    const level = prompt('Masukkan level (Silver/Gold/Platinum):', 'Gold');
+    if (!level || !['Silver', 'Gold', 'Platinum'].includes(level)) {
+        showToast('Level harus Silver, Gold, atau Platinum!', 'warning');
+        return;
+    }
+    
+    AppData.prizes.push({ name, level, active: true });
+    updateStats();
+    renderPrizes();
+    showToast('Hadiah berhasil ditambahkan!');
+}
+
+// ================================================================
+// SPINS
+// ================================================================
+
+function refreshSpins() {
+    const tbody = document.getElementById('spinHistory');
+    document.getElementById('spinCountTotal').textContent = AppData.spins.length;
+    
+    if (AppData.spins.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" class="text-center text-muted py-2">
+                    <i class="fas fa-inbox fa-2x mb-1 d-block"></i>
+                    Belum ada riwayat spin.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    tbody.innerHTML = AppData.spins.map((s, i) => `
+        <tr>
+            <td>${i + 1}</td>
+            <td style="color: var(--gelora-gray); font-size:0.65rem;">${s.time}</td>
+            <td><strong style="font-size:0.8rem;">${s.userId}</strong></td>
+            <td><span class="badge-gold" style="font-size:0.7rem;">${s.code}</span></td>
+            <td><span style="color: var(--gelora-gold); font-weight: 600; font-size:0.8rem;">${s.prize}</span></td>
+            <td><span class="badge-success-dark" style="font-size:0.65rem;">${s.status}</span></td>
+            <td>
+                <button class="btn-danger-outline-sm" onclick="deleteSpin(${i})" style="padding:1px 8px; font-size:0.6rem; height:22px;">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function deleteSpin(index) {
+    if (!confirm(`Hapus riwayat spin ini?`)) return;
+    AppData.spins.splice(index, 1);
+    refreshSpins();
+    updateStats();
+    showToast('Riwayat spin dihapus.');
+}
+
+function clearAllSpins() {
+    if (!confirm('Hapus SEMUA riwayat spin? Tindakan ini tidak dapat dibatalkan!')) return;
+    if (!confirm('Yakin ingin menghapus semua data riwayat spin?')) return;
+    AppData.spins = [];
+    refreshSpins();
+    updateStats();
+    showToast('Semua riwayat spin telah dihapus. 🗑️');
+}
+
+// ================================================================
+// SETTINGS & PASSWORD
+// ================================================================
+
+function saveSettings() {
+    const days = document.getElementById('cleanupDays').value;
+    localStorage.setItem('gelora_cleanup_days', days);
+    showToast('Pengaturan berhasil disimpan!');
+}
+
+function resetPassword() {
+    const old = document.getElementById('oldPassword').value;
+    const newPw = document.getElementById('newPassword').value;
+    const confirm = document.getElementById('confirmPassword').value;
+    
+    if (!old || !newPw || !confirm) {
+        showToast('Harap isi semua field!', 'warning');
+        return;
+    }
+    if (newPw !== confirm) {
+        showToast('Password baru tidak sama!', 'warning');
+        return;
+    }
+    if (newPw.length < 6) {
+        showToast('Password minimal 6 karakter!', 'warning');
+        return;
+    }
+    
+    showToast('Password berhasil direset! 🔐');
+    document.getElementById('oldPassword').value = '';
+    document.getElementById('newPassword').value = '';
+    document.getElementById('confirmPassword').value = '';
+}
+
+// ================================================================
+// POPUPS
+// ================================================================
+
+function showRewards() {
+    const container = document.getElementById('rewardsContainer');
+    const levels = ['Silver', 'Gold', 'Platinum'];
+    const levelIcons = { Silver: 'fa-coins', Gold: 'fa-crown', Platinum: 'fa-gem' };
+    
+    container.innerHTML = levels.map(level => `
+        <div class="col-md-4">
+            <div class="reward-box">
+                <h4 class="${level === 'Gold' ? 'gold' : level === 'Platinum' ? 'platinum' : ''}">
+                    <i class="fas ${levelIcons[level]} me-2"></i>${level}
+                </h4>
+                ${AppData.prizes.filter(p => p.level === level && p.active).map(p => `
+                    <div class="reward-item">${p.name}</div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+    
+    document.getElementById('popupRewards').classList.add('active');
+}
+
+function showHistory() {
+    const tbody = document.getElementById('historyTableBody');
+    const recent = AppData.spins.slice(-20).reverse();
+    tbody.innerHTML = recent.map((s, i) => `
+        <tr>
+            <td>${i + 1}</td>
+            <td><strong>${s.userId}</strong></td>
+            <td><span style="color: var(--gelora-gold);">${s.prize}</span></td>
+        </tr>
+    `).join('');
+    document.getElementById('popupHistory').classList.add('active');
+}
+
+function closePopup(id) {
+    document.getElementById(id).classList.remove('active');
+}
+
+// ================================================================
+// TOAST
+// ================================================================
+
+function showToast(message, type = 'success') {
+    const icons = {
+        success: 'fa-check-circle',
+        warning: 'fa-exclamation-triangle',
+        error: 'fa-times-circle'
+    };
+    const toast = document.createElement('div');
+    toast.className = `toast-custom ${type}`;
+    toast.innerHTML = `<i class="fas ${icons[type] || icons.success}"></i> ${message}`;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.4s ease';
+        setTimeout(() => toast.remove(), 400);
+    }, 3500);
+}
+
+// ================================================================
+// CONFETTI
+// ================================================================
+
+function triggerConfetti() {
+    const container = document.getElementById('confettiContainer');
+    container.classList.remove('hidden');
+    const canvas = document.getElementById('confettiCanvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    
+    const particles = [];
+    const colors = ['#00992f', '#41d16d', '#ffd700', '#ffffff', '#00b33a', '#f0f0f0'];
+    for (let i = 0; i < 150; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            w: Math.random() * 12 + 4,
+            h: Math.random() * 6 + 3,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            speed: Math.random() * 3 + 1.5,
+            rotation: Math.random() * 360,
+            rotSpeed: (Math.random() - 0.5) * 12,
+            swing: Math.random() * 2 - 1,
+        });
+    }
+    let frame = 0;
+    const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+        particles.forEach(p => {
+            p.y += p.speed;
+            p.x += Math.sin(frame / 50 + p.swing) * 0.6;
+            p.rotation += p.rotSpeed;
+            if (p.y < canvas.height + 20) active = true;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation * Math.PI / 180);
+            ctx.fillStyle = p.color;
+            ctx.shadowColor = 'rgba(0, 153, 47, 0.3)';
+            ctx.shadowBlur = 10;
+            ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+            ctx.restore();
+        });
+        frame++;
+        if (active) requestAnimationFrame(animate);
+        else container.classList.add('hidden');
+    };
+    animate();
+    setTimeout(() => container.classList.add('hidden'), 5000);
+}
+
+// ================================================================
+// INIT
+// ================================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // CEK SESSION - Redirect ke login jika tidak ada session
+    if (!checkAuth()) return;
+    
+    // Tampilkan username di sidebar
+    document.getElementById('sidebarUsername').textContent = getUsername();
+    
+    const savedDays = localStorage.getItem('gelora_cleanup_days');
+    if (savedDays) document.getElementById('cleanupDays').value = savedDays;
+    
+    initSampleData();
+    updateStats();
+    renderTickets();
+    renderPrizes();
+    refreshSpins();
+    openTab('dashboard');
+    
+    document.getElementById('filterAll').style.opacity = '1';
+    document.getElementById('filterAll').style.borderColor = 'var(--gelora-gold)';
+    
+    setTimeout(cleanupUsedTickets, 1000);
+    
+    window.openTab = openTab;
+    window.generateTickets = generateTickets;
+    window.renderTickets = renderTickets;
+    window.filterTickets = filterTickets;
+    window.deleteTicket = deleteTicket;
+    window.cleanupUsedTickets = cleanupUsedTickets;
+    window.checkTicket = checkTicket;
+    window.useTicket = useTicket;
+    window.togglePrize = togglePrize;
+    window.deletePrize = deletePrize;
+    window.addPrize = addPrize;
+    window.refreshSpins = refreshSpins;
+    window.deleteSpin = deleteSpin;
+    window.clearAllSpins = clearAllSpins;
+    window.saveSettings = saveSettings;
+    window.resetPassword = resetPassword;
+    window.showRewards = showRewards;
+    window.showHistory = showHistory;
+    window.closePopup = closePopup;
+    window.triggerConfetti = triggerConfetti;
+    window.showToast = showToast;
+    window.updateStats = updateStats;
+    window.handleLogout = handleLogout;
+});
+
+console.log('🏆 GELORAGAMING Lucky Wheel Admin Panel Loaded!');
+console.log('🔐 Sistem login aktif - Session berbasis localStorage');
+console.log('👤 Username: admin | Password: admin123');
+console.log('💡 Ganti credentials di file login.html');
 </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496"
-integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ=="
-data-cf-beacon='{"version":"2024.11.0","token":"914889e487bc442db1fca74d5f5a51cc","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
-crossorigin="anonymous">
-</script>
-
 </body>
 </html>
